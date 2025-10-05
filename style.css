@@ -1,0 +1,268 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #37353E;
+    height: 100vh;
+    height: 100dvh;
+    width: 100%;
+    padding: 70px 0 0 0;
+    transition: padding .5s ease;
+}
+
+body.active {
+    padding: 110px 0 0 0;
+}
+
+nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+#mainNav {
+    background-color: #44444E;
+    width: 100%;
+    height: 58px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 12px;
+    position: relative;
+    z-index: 1002;
+}
+
+#left-sec {
+    display: flex;
+    height: 60%;
+    width: 55%;
+    background-color: #44444E;
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.6),
+        0 8px 16px rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    position: relative;
+    overflow: hidden;
+    justify-content: flex-start;
+}
+
+#left-sec::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: var(--after-left, 0);
+    width: var(--after-width, 34%);
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 7px;
+    transition: left 0.4s ease;
+    z-index: 1010;
+}
+
+#left-sec li {
+    list-style: none;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    font-size: 0.8rem;
+    cursor: pointer;
+    z-index: 1011;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Nav Right Se Section */
+#right-sec {
+    height: 60%;
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    align-items: center;
+}
+
+#right-sec li {
+    list-style: none;
+    background-color: #44444E;
+    box-shadow:
+        0 2px 6px rgba(0, 0, 0, 0.6),
+        0 8px 16px rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform .3s ease;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#right-sec li:active {
+    transform: scale(.80);
+}
+
+#gameS-btn {
+    width: 50px;
+    height: 100%;
+    border-radius: 10px;
+}
+
+#gameS-btn svg {
+    width: 75%;
+    height: 75%;
+    fill: white
+}
+
+#LOGO {
+    width: 70px;
+    height: 100%;
+    border-radius: 10px;
+    background: linear-gradient(120deg, #FFD700, #FFB700, #FFC700, #FFF8DC, #FFD700);
+    background-size: 300% 300%;
+    position: relative;
+    overflow: hidden;
+    animation: goldenFlow 6s ease infinite;
+    cursor: pointer;
+}
+
+/* Gradient movement */
+@keyframes goldenFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+    
+    50% {
+        background-position: 100% 50%;
+    }
+    
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#LOGO::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(120deg, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0.3) 100%);
+    transform: rotate(25deg);
+    animation: shimmer 2s linear infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%) rotate(25deg);
+    }
+    
+    100% {
+        transform: translateX(100%) rotate(25deg);
+    }
+}
+
+/* Search Area */
+#search-section {
+    width: 100%;
+    height: 45px;
+    background-color: #44444E;
+    position: absolute;
+    top: 20px;
+    z-index: 1001;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    padding: 0 10px 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: top .5s ease;
+}
+
+#search-section.active {
+    top: 55px;
+}
+
+#search-section #search-box {
+    width: 95%;
+    height: 70%;
+    position: absolute;
+    bottom: 4px;
+    padding: 0 8px 0 8px;
+    background-color: transparent;
+    border-radius: 5px;
+    border: 1.5px solid transparent;
+    color: white;
+}
+
+#search-box::placeholder {
+    color: white;
+    font-size: 1rem;
+}
+
+#search-box:focus {
+    outline: none;
+}
+
+/* HERO Section */
+#hero {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 6px;
+    gap: 4px;
+}
+
+.container {
+    width: 100%;
+    gap: 5px;
+    display: flex;
+}
+
+.container .box {
+    display: flex;
+    position: relative;
+    flex: 1;
+}
+
+.container .box .poster {
+    width: 100%;
+    aspect-ratio: 16/9;
+}
+
+.poster-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 45%,
+            rgba(0, 0, 0, 0.6) 85%,
+            rgba(0, 0, 0, 0.9) 100%);
+    pointer-events: none;
+}
+
+.gameInfo {
+    width: 95%;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+.logo{
+    width: 20%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.gameName{
+    font-size: .8rem;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
