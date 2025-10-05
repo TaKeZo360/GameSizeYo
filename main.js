@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const url = "https://raw.githubusercontent.com/TaKeZo360/gamesizes/refs/heads/main/jsonData/androidGames.json";
   const hero = document.getElementById('hero');
   
-  // Fetch JSON data (only text data)
+  // Fetch only JSON (text data)
   fetch(url)
     .then(response => {
       if (!response.ok) throw new Error("Network response was not ok");
@@ -26,11 +26,9 @@ document.addEventListener("DOMContentLoaded", function() {
         );
       }
     })
-    .catch(error => {
-      console.error("Fetching error:", error);
-    });
+    .catch(error => console.error("Fetching error:", error));
   
-  // Navigation section (unchanged)
+  // Device nav animation (unchanged)
   const leftNavSec = document.getElementById('left-sec');
   let timeoutID;
   
@@ -42,17 +40,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let left = el.offsetLeft;
     let width = el.offsetWidth;
     timeoutID = setTimeout(() => {
-      switch (el.id) {
-        case 'android':
-          console.log('Android');
-          break;
-        case 'windows':
-          console.log('Windows');
-          break;
-        case 'mac':
-          console.log('Mac');
-          break;
-      }
+      console.log(el.id);
     }, 1000);
     
     leftNavSec.style.setProperty("--after-left", left + "px");
@@ -69,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
     body.classList.toggle("active");
   });
   
-  // Create game section (using local images)
+  // Create section boxes
   function createGameSection({ id1, posterSrc1, logoSrc1, gameName1, id2, posterSrc2, logoSrc2, gameName2 }) {
     const section = document.createElement("section");
     section.className = "container";
