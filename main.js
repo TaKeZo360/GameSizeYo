@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", function() {
       box.dataset.id = id;
       
       const poster = document.createElement("img");
-      poster.src = posterSrc || "placeholder-16-9.png";
+      poster.src = `images/${posterSrc}` || "placeholder-16-9.png";
       poster.alt = "Poster";
       poster.loading = "lazy";
       poster.className = "poster";
@@ -81,7 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
       gameInfo.className = "gameInfo";
       
       const logo = document.createElement("img");
-      logo.src = logoSrc || "placeholder-1-1.png";
+      logo.src = `images/${logoSrc}` || "placeholder-1-1.png";
       logo.alt = "Logo";
       logo.loading = "lazy";
       logo.className = "logo";
