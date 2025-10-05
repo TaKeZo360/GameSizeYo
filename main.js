@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function() {
   const url = "https://raw.githubusercontent.com/TaKeZo360/gamesizes/refs/heads/main/jsonData/androidGames.json";
   const hero = document.getElementById('hero');
-  const baseUrl = "https://raw.githubusercontent.com/TaKeZo360/gamesizes/main/images/";
   
+  // Fetch only JSON (text data)
   fetch(url)
     .then(response => {
       if (!response.ok) throw new Error("Network response was not ok");
@@ -15,21 +15,20 @@ document.addEventListener("DOMContentLoaded", function() {
         hero.appendChild(
           createGameSection({
             id1: i,
-            posterSrc1: item1.poster ? baseUrl + item1.poster : '',
-            logoSrc1: item1.logo ? baseUrl + item1.logo : '',
+            posterSrc1: item1.poster,
+            logoSrc1: item1.logo,
             gameName1: item1.name,
             id2: i + 1,
-            posterSrc2: item2 ? (item2.poster ? baseUrl + item2.poster : '') : '',
-            logoSrc2: item2 ? (item2.logo ? baseUrl + item2.logo : '') : '',
+            posterSrc2: item2 ? item2.poster : '',
+            logoSrc2: item2 ? item2.logo : '',
             gameName2: item2 ? item2.name : ''
           })
         );
       }
     })
-    .catch(error => {
-      console.error("Fetching error:", error);
-    });
+    .catch(error => console.error("Fetching error:", error));
   
+  // Device nav animation (unchanged)
   const leftNavSec = document.getElementById('left-sec');
   let timeoutID;
   
@@ -41,23 +40,14 @@ document.addEventListener("DOMContentLoaded", function() {
     let left = el.offsetLeft;
     let width = el.offsetWidth;
     timeoutID = setTimeout(() => {
-      switch (el.id) {
-        case 'android':
-          console.log('Android');
-          break;
-        case 'windows':
-          console.log('Windows');
-          break;
-        case 'mac':
-          console.log('Mac');
-          break;
-      }
+      console.log(el.id);
     }, 1000);
     
     leftNavSec.style.setProperty("--after-left", left + "px");
     leftNavSec.style.setProperty("--after-width", width + "px");
   });
   
+  // Search toggle
   const gameSbtn = document.getElementById("gameS-btn");
   const searchSec = document.getElementById('search-section');
   const body = document.querySelector('body');
@@ -67,6 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
     body.classList.toggle("active");
   });
   
+  // Create section boxes
   function createGameSection({ id1, posterSrc1, logoSrc1, gameName1, id2, posterSrc2, logoSrc2, gameName2 }) {
     const section = document.createElement("section");
     section.className = "container";
@@ -77,10 +68,11 @@ document.addEventListener("DOMContentLoaded", function() {
       box.dataset.id = id;
       
       const poster = document.createElement("img");
-      poster.src = posterSrc;
-      poster.alt = "placeholder-16-9.png";
+      poster.src = posterSrc || "placeholder-16-9.png";
+      poster.alt = "Poster";
       poster.loading = "lazy";
       poster.className = "poster";
+      poster.onerror = () => { poster.src = "placeholder-16-9.png"; };
       
       const overlay = document.createElement("div");
       overlay.className = "poster-overlay";
@@ -89,10 +81,11 @@ document.addEventListener("DOMContentLoaded", function() {
       gameInfo.className = "gameInfo";
       
       const logo = document.createElement("img");
-      logo.src = logoSrc;
-      logo.alt = "placeholder-1-1.jpg";
+      logo.src = logoSrc || "placeholder-1-1.png";
+      logo.alt = "Logo";
       logo.loading = "lazy";
       logo.className = "logo";
+      logo.onerror = () => { logo.src = "placeholder-1-1.png"; };
       
       const name = document.createElement("p");
       name.className = "gameName";
